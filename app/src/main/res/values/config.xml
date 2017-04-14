@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_service_url" translatable="false">http://pinky.futuremind.com/~dpaluch/test35/</string>
+
+</resources>
