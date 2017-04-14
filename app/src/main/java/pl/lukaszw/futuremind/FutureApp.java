@@ -24,4 +24,8 @@ public class FutureApp extends Application {
                 .netModule(new NetModule(getString(R.string.base_service_url)))
                 .build();
     }
+
+    public ApplicationComponent getAppComponent() {
+        return mAppComponent;
+    }
 }
