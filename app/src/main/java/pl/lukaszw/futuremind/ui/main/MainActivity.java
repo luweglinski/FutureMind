@@ -1,15 +1,20 @@
 package pl.lukaszw.futuremind.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 
 import pl.lukaszw.futuremind.R;
+import pl.lukaszw.futuremind.data.viewmodel.DataViewModel;
+import pl.lukaszw.futuremind.ui.main.list.detail.ListDetailActivity;
+import pl.lukaszw.futuremind.ui.main.list.detail.ListDetailFragment;
+import pl.lukaszw.futuremind.ui.main.list.master.item.ItemClickListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ItemClickListener<DataViewModel> {
 
-    private FragmentManager mFragmentManager;
+    private boolean isTwoPane = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,17 +23,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFragmentManager = getSupportFragmentManager();
 
-        ListFragment mainActivityFragment = (ListFragment) mFragmentManager.findFragmentByTag(ListFragment.TAG);
-        if (mainActivityFragment == null) {
-            mainActivityFragment = ListFragment.newInstance();
+        FrameLayout fragmentItemDetail = (FrameLayout) findViewById(R.id.list_detail_container);
+        if (fragmentItemDetail != null) {
+            isTwoPane = true;
         }
-
-        mFragmentManager
-                .beginTransaction()
-                .replace(R.id.list_container, mainActivityFragment, ListFragment.TAG)
-                .commit();
     }
 
+    @Override
+    public void onItemClick(DataViewModel item) {
+        if (isTwoPane) {
+            ListDetailFragment listDetailFragment = ListDetailFragment.newInstance(item.getWebUrl());
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.list_detail_container, listDetailFragment)
+                    .commit();
+        } else {
+            Intent i = new Intent(this, ListDetailActivity.class);
+            i.putExtra(ListDetailFragment.ArgKeys.WEB_URL_KEY, item.getWebUrl());
+            startActivity(i);
+        }
+    }
 }

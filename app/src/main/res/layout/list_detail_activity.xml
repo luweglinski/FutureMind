@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pl.lukaszw.futuremind.ui.main.MainActivity">
+    tools:context=".ui.main.list.detail.ListDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,11 +21,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <fragment
-        android:id="@+id/list_container"
-        android:name="pl.lukaszw.futuremind.ui.main.list.master.ListFragment"
+    <FrameLayout
+        android:id="@+id/list_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
 </android.support.design.widget.CoordinatorLayout>
