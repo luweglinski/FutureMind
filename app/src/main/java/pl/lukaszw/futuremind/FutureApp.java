@@ -2,6 +2,8 @@ package pl.lukaszw.futuremind;
 
 import android.app.Application;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import pl.lukaszw.futuremind.di.component.ApplicationComponent;
 import pl.lukaszw.futuremind.di.component.DaggerApplicationComponent;
 import pl.lukaszw.futuremind.di.module.AppModule;
@@ -23,6 +25,14 @@ public class FutureApp extends Application {
                 .appModule(new AppModule(this))
                 .netModule(new NetModule(getString(R.string.base_service_url)))
                 .build();
+
+        Realm.init(this);
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        Realm.setDefaultConfiguration(realmConfiguration);
     }
 
     public ApplicationComponent getAppComponent() {
