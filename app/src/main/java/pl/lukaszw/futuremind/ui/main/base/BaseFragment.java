@@ -35,6 +35,14 @@ public class BaseFragment<T extends BasePresenter> extends Fragment {
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getPresenter() != null) {
+            getPresenter().onDestroy();
+        }
+    }
+
     public T getPresenter() {
         return null;
     }
