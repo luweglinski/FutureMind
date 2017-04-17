@@ -59,8 +59,9 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ImageView mImageView;
-        private TextView mTitle, mDesc;
+        private final TextView mDate;
+        private final ImageView mImageView;
+        private final TextView mTitle, mDesc;
         private DataViewModel mDataViewModel;
 
         ViewHolder(View itemView) {
@@ -68,6 +69,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             mImageView = (ImageView) itemView.findViewById(R.id.item_image);
             mTitle = (TextView) itemView.findViewById(R.id.item_title);
             mDesc = (TextView) itemView.findViewById(R.id.item_desc);
+            mDate = (TextView) itemView.findViewById(R.id.item_date);
             itemView.setOnClickListener(this);
         }
 
@@ -81,6 +83,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
                     .into(mImageView);
             mTitle.setText(dataViewModel.getTitle());
             mDesc.setText(dataViewModel.getDescription());
+            mDate.setText(dataViewModel.getModificationDateString());
         }
 
         @Override

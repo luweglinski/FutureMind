@@ -4,16 +4,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by Lukasz on 14.04.2017.
  */
 
-public class DataResponse {
+public class DataResponse extends RealmObject {
 
     @SerializedName("data")
-    private List<DataModel> mData;
+    private RealmList<DataModel> mData;
 
-    public List<DataModel> getDataModelList() {
+    public RealmList<DataModel> getDataModelList() {
         return mData;
     }
 }

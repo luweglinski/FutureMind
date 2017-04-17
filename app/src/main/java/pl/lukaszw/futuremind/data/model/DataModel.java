@@ -2,11 +2,15 @@ package pl.lukaszw.futuremind.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
+import io.realm.RealmObject;
+
 /**
  * Created by Lukasz on 14.04.2017.
  */
 
-public class DataModel {
+public class DataModel extends RealmObject {
 
     @SerializedName("title")
     protected String mTitle;
@@ -18,7 +22,7 @@ public class DataModel {
     protected int mOrderId;
 
     @SerializedName("modificationDate")
-    protected String mModificationDate;
+    protected Date mModificationDate;
 
     @SerializedName("image_url")
     protected String mImageUrl;
@@ -35,7 +39,7 @@ public class DataModel {
         return mOrderId;
     }
 
-    public String getModificationDate() {
+    public Date getModificationDate() {
         return mModificationDate;
     }
 
